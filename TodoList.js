@@ -10,7 +10,7 @@ export default function TodoList({ state, target }) {
   this.$li = document.getElementById('todo-list-item');
   this.$input = document.getElementById('todo-input');
 
-  this.$li.addEventListener('click', (e) => {
+  this.todoTemplate = this.$li.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-button')) {
       this.state = this.state.filter(
         (item) => item.id !== parseInt(e.target.closest('li').id)
@@ -19,11 +19,36 @@ export default function TodoList({ state, target }) {
     }
 
     if (e.target.classList.contains('edit-button')) {
-      // TODO: 수정기능 구현
+      e.preventDefault();
+      this.$li.innerHTML = this.state
+        .map(({ id, text, isCompleted }) => {
+          if (id === parseInt(e.target.closest('li').id)) {
+            return `<li id=${id}>
+              <textarea class="edit-content"></textarea> 
+              <button class="edit-completed-button">수정완료</button> 
+              <button class="remove-button">삭제</button></li>`;
+          } else {
+            return `<li id=${id}>${
+              isCompleted
+                ? `<span>(완료) ${text}</span>`
+                : `<span>${text}</span>`
+            } <button class="edit-button">수정</button> <button class="remove-button">삭제</button></li>`;
+          }
+        })
+        .join('');
     }
 
-    if (e.target.classList.contains('edit-completed')) {
-      // TODO: 수정완료 구현
+    if (e.target.classList.contains('edit-completed-button')) {
+      e.preventDefault();
+      const editIndex = this.state.findIndex(
+        ({ id }) => id === parseInt(e.target.closest('li').id)
+      );
+      const editContent = e.target.closest('li').firstElementChild.value;
+
+      this.state[editIndex].text = editContent;
+      this.state[editIndex].isCompleted = false;
+
+      this.render();
     }
   });
 
@@ -35,7 +60,7 @@ export default function TodoList({ state, target }) {
         ...this.state,
         {
           id: Date.now(),
-          text: this.$input.value,
+          text: e.target.value,
           isCompleted: false,
         },
       ]);
@@ -52,7 +77,7 @@ export default function TodoList({ state, target }) {
     this.$li.innerHTML = this.state
       .map(({ id, text, isCompleted }) => {
         return `<li id=${id}>${
-          isCompleted ? `(완료) ${text}` : text
+          isCompleted ? `<span>(완료) ${text}</span>` : `<span>${text}</span>`
         } <button class="edit-button">수정</button> <button class="remove-button">삭제</button></li>`;
       })
       .join('');
