@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {object} param0 { state: {id: number, text: string, isCompleted: boolean}, target: string }
+ */
+
 export default function TodoList({ state, target }) {
   if (state === null || state === undefined)
     throw new Error('state가 null 또는 undefined 입니다.');
@@ -10,7 +15,17 @@ export default function TodoList({ state, target }) {
   this.$li = document.getElementById('todo-list-item');
   this.$input = document.getElementById('todo-input');
 
-  this.todoTemplate = this.$li.addEventListener('click', (e) => {
+  this.$li.addEventListener('click', (e) => {
+    if (e.target.classList.contains('todo-checkbox')) {
+      const checkboxIndex = this.state.findIndex(
+        ({ id }) => id === parseInt(e.target.closest('li').id)
+      );
+      this.state[checkboxIndex].isCompleted =
+        !this.state[checkboxIndex].isCompleted;
+
+      this.render();
+    }
+
     if (e.target.classList.contains('remove-button')) {
       this.state = this.state.filter(
         (item) => item.id !== parseInt(e.target.closest('li').id)
@@ -30,8 +45,8 @@ export default function TodoList({ state, target }) {
           } else {
             return `<li id=${id}>${
               isCompleted
-                ? `<span>(완료) ${text}</span>`
-                : `<span>${text}</span>`
+                ? `<input class="todo-checkbox" type="checkbox" checked /><span>(완료) ${text}</span>`
+                : `<input class="todo-checkbox" type="checkbox" /><span>${text}</span>`
             } <button class="edit-button">수정</button> <button class="remove-button">삭제</button></li>`;
           }
         })
@@ -77,7 +92,9 @@ export default function TodoList({ state, target }) {
     this.$li.innerHTML = this.state
       .map(({ id, text, isCompleted }) => {
         return `<li id=${id}>${
-          isCompleted ? `<span>(완료) ${text}</span>` : `<span>${text}</span>`
+          isCompleted
+            ? `<input class="todo-checkbox" type="checkbox" checked/><span>(완료) ${text}</span>`
+            : `<input class="todo-checkbox" type="checkbox" /><span>${text}</span>`
         } <button class="edit-button">수정</button> <button class="remove-button">삭제</button></li>`;
       })
       .join('');

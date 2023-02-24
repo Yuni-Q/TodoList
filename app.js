@@ -16,6 +16,6 @@ const initialState = [
 try {
   const todoList = new TodoList({ state: initialState, target: 'todo-list' });
 } catch (err) {
-  // TODO: err 타입 검증
+  // TODO: err 타입 검사
   alert(err);
 }
