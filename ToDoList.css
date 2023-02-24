@@ -1,0 +1,167 @@
+:root {
+  /* color */
+  --color-dark-gray: #393c3e;
+  --color-bright-bg: #f1f3f5;
+  --color-white: #f1f5f8;
+
+  /* size */
+  --font-size-micro: 10px;
+  --font-size-small: 15px;
+  --font-size-medium: 20px;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  position: absolute;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+header {
+  height: 30px;
+  background-color: var(--color-dark-gray);
+}
+
+h4 {
+  line-height: 30px;
+  margin: 0px 10px;
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  /* position: fixed; */
+  width: 100vw;
+  height: 50px;
+  background-color: var(--color-bright-bg);
+}
+
+nav > h5 {
+  cursor: pointer;
+  line-height: 50px;
+  margin: 0 10px;
+  color: var(--color-dark-gray);
+  font-size: var(--font-size-medium);
+}
+
+#searchBar {
+  display: flex;
+  justify-content: space-between;
+  /* z-index: 1; */
+  width: 200px;
+  height: 25px;
+  margin-top: 12.5px;
+  margin-right: 100px;
+  border: none;
+  border-radius: 3px;
+  /* 이 경우에는 왜 이 색깔로 지정한 건 안되는 거지? */
+  /* background-color: #f1f5f8; */
+  background-color: white;
+}
+
+#searchBar > span {
+  line-height: 25px;
+  margin-left: 15px;
+  color: var(--color-dark-gray);
+  font-size: var(--font-size-micro);
+}
+
+#searchIcon {
+  font-size: var(--font-size-micro);
+  text-align: right;
+}
+
+#mainBody {
+  display: flex;
+  flex: 1;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: var(--color-bright-bg);
+}
+
+.title-box {
+  display: flex;
+  justify-content: space-between;
+  /* width: 250px; */
+  width: 90%;
+  margin-left: 20px;
+}
+
+.title-box__txt {
+  font-size: var(--font-size-small);
+  margin-left: 40px;
+}
+
+.title-box__txt:hover {
+  border-bottom: 3px solid var(--color-dark-gray);
+  cursor: pointer;
+}
+
+.title-box__cnt {
+  margin-right: -100px;
+}
+
+.contents-box {
+  display: flex;
+  justify-content: space-between;
+  /* width: 250px; */
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: white;
+}
+
+.contents-box__title {
+  display: block;
+  text-align: center;
+}
+
+.contents-box__container {
+  /* width: 200px; */
+  width: 90%;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.contents-box__contents {
+  /* width: 200px; */
+  width: 95%;
+  margin-right: 5px;
+}
+
+.contents-box__Icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 5px;
+}
+
+.contents-box__Btn {
+  width: 10px;
+  margin-right: 5px;
+  font-size: var(--font-size-micro);
+}
+
+svg {
+  width: 10px;
+  height: 10px;
+}
+
+.new-box {
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 15px;
+}
