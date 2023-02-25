@@ -8,10 +8,17 @@
       src="https://kit.fontawesome.com/b8ead2406e.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="ToDoList.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;0,500;1,100;1,200;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap"
       rel="stylesheet"
     />
     <title>Document</title>
@@ -39,25 +46,16 @@
           </button>
         </div>
         <div class="contents-box">
-          <span class="contents-box__title">Title</span>
-          <input type="text" class="contents-box__contents" />
+          <div class="contents-box__container">
+            <span class="contents-box__title">Title</span>
+            <textarea
+              name="contents"
+              class="contents-box__contents"
+              id=""
+              rows="7"
+            ></textarea>
+          </div>
           <div class="contents-box__Icons">
-            <button class="contents-box__Btn leftBtn">
-              <svg
-                width="46"
-                height="46"
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M19 12H5"></path>
-                <path d="m12 19-7-7 7-7"></path>
-              </svg>
-            </button>
             <button class="contents-box__Btn rightBtn">
               <svg
                 width="46"
@@ -88,15 +86,22 @@
       </section>
       <section id="doing">
         <div class="title-box">
-          <span class="title-box__txt">To Do</span>
+          <span class="title-box__txt">Doing</span>
           <span class="title-box__cnt">0</span>
           <button class="title-box__btn plusBtn">
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
         <div class="contents-box">
-          <span class="contents-box__title">Title</span>
-          <input type="text" class="contents-box__contents" />
+          <div class="contents-box__container">
+            <span class="contents-box__title">Title</span>
+            <textarea
+              name="contents"
+              class="contents-box__contents"
+              id=""
+              rows="7"
+            ></textarea>
+          </div>
           <div class="contents-box__Icons">
             <button class="contents-box__Btn leftBtn">
               <svg
@@ -144,15 +149,22 @@
       </section>
       <section id="done">
         <div class="title-box">
-          <span class="title-box__txt">To Do</span>
+          <span class="title-box__txt">Done</span>
           <span class="title-box__cnt">0</span>
           <button class="title-box__btn plusBtn">
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
         <div class="contents-box">
-          <span class="contents-box__title">Title</span>
-          <input type="text" class="contents-box__contents" />
+          <div class="contents-box__container">
+            <span class="contents-box__title">Title</span>
+            <textarea
+              name="contents"
+              class="contents-box__contents"
+              id=""
+              rows="7"
+            ></textarea>
+          </div>
           <div class="contents-box__Icons">
             <button class="contents-box__Btn leftBtn">
               <svg
@@ -168,22 +180,6 @@
               >
                 <path d="M19 12H5"></path>
                 <path d="m12 19-7-7 7-7"></path>
-              </svg>
-            </button>
-            <button class="contents-box__Btn rightBtn">
-              <svg
-                width="46"
-                height="46"
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
               </svg>
             </button>
             <button class="contents-box__Btn trashBtn">
