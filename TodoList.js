@@ -1,15 +1,16 @@
+import {
+  Validate,
+  ValidationError,
+  NewKeyWordRequiredError,
+} from './Validation.js';
+
 /**
  *
  * @param {{state: object, target: string}}
  */
 
 export default function TodoList({ state, target }) {
-  if (state === null || state === undefined)
-    throw new Error('state가 null 또는 undefined 입니다.');
-  if (!Array.isArray(state)) throw new Error('state가 배열이 아닙니다.');
-  if (new.target === undefined)
-    throw new Error('new 키워드가 사용되지 않았습니다.');
-
+  Validate(state, new.target);
   this.state = state;
   this.$target = document.getElementById(target);
   this.$li = document.getElementById('todo-list-item');

@@ -1,4 +1,5 @@
 import TodoList from './TodoList.js';
+import { ValidationError, NewKeyWordRequiredError } from './Validation.js';
 
 const initialState = [
   {
@@ -16,6 +17,12 @@ const initialState = [
 try {
   const todoList = new TodoList({ state: initialState, target: 'todo-list' });
 } catch (err) {
-  // TODO: err 타입 검사
-  alert(err);
+  if (
+    err instanceof ValidationError ||
+    err instanceof NewKeyWordRequiredError
+  ) {
+    alert(err.name + ' : ' + err.message);
+  } else {
+    alert(err);
+  }
 }
