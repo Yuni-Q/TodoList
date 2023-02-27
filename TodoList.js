@@ -1,6 +1,6 @@
 /**
  *
- * @param {object} param0 { state: {id: number, text: string, isCompleted: boolean}, target: string }
+ * @param {{state: object, target: string}}
  */
 
 export default function TodoList({ state, target }) {
@@ -67,19 +67,21 @@ export default function TodoList({ state, target }) {
     }
   });
 
-  this.$input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (e.target.value === '') return;
-      this.setState([
-        ...this.state,
-        {
-          id: Date.now(),
-          text: e.target.value,
-          isCompleted: false,
-        },
-      ]);
-      this.$input.value = '';
+  this.$input.addEventListener('keydown', (e) => {
+    if (e.isComposing === false) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (e.target.value === '') return;
+        this.setState([
+          ...this.state,
+          {
+            id: Date.now(),
+            text: e.target.value,
+            isCompleted: false,
+          },
+        ]);
+        this.$input.value = '';
+      }
     }
   });
 
