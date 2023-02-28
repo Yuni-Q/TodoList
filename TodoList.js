@@ -15,6 +15,7 @@ export default function TodoList({ state, target }) {
   this.$target = document.getElementById(target);
   this.$li = document.getElementById('todo-list-item');
   this.$input = document.getElementById('todo-input');
+  this.$button = document.getElementById('todo-button');
 
   const listTemplate = (id, text, isCompleted) => {
     return `<li id=${id}>
@@ -72,22 +73,30 @@ export default function TodoList({ state, target }) {
     }
   });
 
+  const addTodo = (value) => {
+    if (value === '') return;
+    this.setState([
+      ...this.state,
+      {
+        id: Date.now(),
+        text: value,
+        isCompleted: false,
+      },
+    ]);
+    this.$input.value = '';
+  };
+
   this.$input.addEventListener('keydown', (e) => {
     if (e.isComposing === false) {
       if (e.key === 'Enter') {
         e.preventDefault();
-        if (e.target.value === '') return;
-        this.setState([
-          ...this.state,
-          {
-            id: Date.now(),
-            text: e.target.value,
-            isCompleted: false,
-          },
-        ]);
-        this.$input.value = '';
+        addTodo(e.target.value);
       }
     }
+  });
+
+  this.$button.addEventListener('click', (e) => {
+    addTodo(this.$input.value);
   });
 
   this.setState = (nextState) => {
