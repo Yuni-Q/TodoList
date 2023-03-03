@@ -20,19 +20,24 @@ export default function TodoList({ state, target }) {
   const listTemplate = (id, text, isCompleted) => {
     return `<li id=${id}>
       <input class="todo-checkbox" type="checkbox" ${
-        isCompleted ? `checked /><span>(완료) ` : `/><span>`
+        isCompleted
+          ? `checked /><span class="todo-content">(완료) `
+          : `/><span class="todo-content">`
       }${text}</span>
       <button class="edit-button">수정</button> <button class="remove-button">삭제</button>
     </li>`;
   };
 
   this.$li.addEventListener('click', (e) => {
-    if (e.target.classList.contains('todo-checkbox')) {
-      const checkboxIndex = this.state.findIndex(
+    if (
+      e.target.classList.contains('todo-checkbox') ||
+      e.target.classList.contains('todo-content')
+    ) {
+      console.log(e.target);
+      const todoIndex = this.state.findIndex(
         ({ id }) => id === parseInt(e.target.closest('li').id)
       );
-      this.state[checkboxIndex].isCompleted =
-        !this.state[checkboxIndex].isCompleted;
+      this.state[todoIndex].isCompleted = !this.state[todoIndex].isCompleted;
 
       this.render();
     }
