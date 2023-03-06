@@ -1,6 +1,6 @@
 # TodoList
 
 // TODO:
-// [] TodoInput 컴포넌트 분리
-// [] CSS 적용
+// [x] TodoInput 컴포넌트 분리
 // [] localStorage
+// [] CSS 적용
