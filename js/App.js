@@ -2,21 +2,22 @@ import TodoInput from './TodoInput.js';
 import TodoList from './TodoList.js';
 import { ValidationError, NewKeyWordRequiredError } from './Validation.js';
 
-const initialState = [
-  {
-    id: 1,
-    text: 'JS 공부하기',
-    isCompleted: true,
-  },
-  {
-    id: 2,
-    text: 'JS 복습하기',
-    isCompleted: false,
-  },
-];
-
 export default function App({ $target }) {
-  this.state = initialState;
+  const storedState = window.localStorage.getItem('todo-list-data');
+  this.state = storedState
+    ? JSON.parse(storedState)
+    : [
+        {
+          id: 1,
+          text: 'JS 공부하기',
+          isCompleted: true,
+        },
+        {
+          id: 2,
+          text: 'JS 복습하기',
+          isCompleted: false,
+        },
+      ];
 
   try {
     const todoInput = new TodoInput({
@@ -55,6 +56,8 @@ export default function App({ $target }) {
     });
     this.setState = (nextState) => {
       this.state = nextState;
+
+      window.localStorage.setItem('todo-list-data', JSON.stringify(nextState));
       todoList.setState(this.state);
     };
   } catch (err) {
