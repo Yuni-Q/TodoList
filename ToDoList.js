@@ -2,16 +2,27 @@ const addItemInput = document.querySelector(".addItem-bar__input");
 const addBtn = document.querySelector(".addItem-bar__btn");
 const todoItemsList = document.querySelector(".todo-itemsList");
 
-const addItem = () => {
-  addBtn.addEventListener("click", function (e) {
+const clickEvent = (elem, eventHandler) => {
+  elem.addEventListener("click", function (e) {
     e.preventDefault();
-    if (e.target.className === "addItem-bar__btn") {
-      const listItem = createContents();
-      if (!listItem) return;
-      todoItemsList.appendChild(listItem);
-      setLocalStorage();
+    const target = e.target;
+    if (target) {
+      eventHandler(target);
     }
   });
 };
 
-addItem();
+const addCnts = (target) => {
+  const content = addItemInput.value.trim();
+  if (content.length < 1) {
+    alert("해야할 일을 입력해주세요!");
+    return;
+  }
+  const listItem = createTodoItem(id++, false, content);
+  addItemInput.value = "";
+  todos.push({ id: listItem.dataset.id, isCompleted: false, content });
+  todoItemsList.appendChild(listItem);
+  setLocalStorage("todos", todos);
+};
+
+clickEvent(addBtn, addCnts);
