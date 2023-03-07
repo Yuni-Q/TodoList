@@ -4,15 +4,13 @@ const todoItemsList = document.querySelector(".todo-itemsList");
 
 const addItem = () => {
   addBtn.addEventListener("click", function (e) {
-    if (addItemInput.value.trim().length < 1) {
-      alert("해야할 일을 입력해주세요!");
-      return;
-    }
     e.preventDefault();
-    const listItem = createContents();
-
-    todoItemsList.appendChild(listItem);
-    setLocalStorage();
+    if (e.target.className === "addItem-bar__btn") {
+      const listItem = createContents();
+      if (!listItem) return;
+      todoItemsList.appendChild(listItem);
+      setLocalStorage();
+    }
   });
 };
 
