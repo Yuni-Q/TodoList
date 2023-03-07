@@ -1,15 +1,15 @@
-const editContents = () => {
-  container.addEventListener("click", function (e) {
-    const target = e.target;
-    if (target.className === "far fa-edit") {
-      const li = target.closest("li");
-      const editInput = li.querySelector("input[type=text]");
-      const label = li.querySelector("label");
-      li.classList.add("editMode");
-      editInput.focus();
-      if (editInput.value.trim().length < 1) return;
-    }
-  });
+const editCntsClick = (target) => {
+  if (target.className === "far fa-edit") {
+    const li = target.closest("li");
+    const editInput = li.querySelector("input[type=text]");
+    const label = li.querySelector("label");
+    li.classList.add("editMode");
+    editInput.focus();
+    if (editInput.value.trim().length < 1) return;
+  }
+};
+
+const editCntsEnter = () => {
   container.addEventListener("keydown", function (e) {
     const target = e.target;
     if (target.className === "listItemInput") {
@@ -38,7 +38,3 @@ const editContents = () => {
     }
   });
 };
-
-todoCompleted();
-todoInCompleted();
-editContents();
