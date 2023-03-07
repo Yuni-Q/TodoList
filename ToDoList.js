@@ -23,14 +23,3 @@ const createTodoItem = (id, isCompleted, content) => {
   `;
   return $li;
 };
-
-const createContents = () => {
-  const content = addItemInput.value;
-  if (content.trim().length < 1) {
-    alert("해야할 일을 입력해주세요!");
-    return null;
-  }
-  const listItem = createTodoItem(id++, false, content);
-  addItemInput.value = "";
-  return listItem;
-};
