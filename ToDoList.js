@@ -1,11 +1,10 @@
-const init = () => {
-  todos = getLocalStorage();
-  if (todos.length === 0) {
-    return;
-  } else {
-    id = todos[todos.length - 1].id + 1;
-    return todos;
+const deleteItem = (e) => {
+  const target = e.target;
+  if (target.classList.contains("delete-item")) {
+    const li = target.closest("li");
+    const todoId = Number(li.dataset.id);
+    todos = todos.filter((todo) => todo.id !== todoId);
+    setLocalStorage();
+    li.remove();
   }
 };
-
-init();
