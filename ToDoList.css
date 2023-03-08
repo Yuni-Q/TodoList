@@ -13,8 +13,7 @@
 }
 
 body {
-  font-family: "Fira Sans", sans-serif;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Fira Sans", "Source Sans Pro", sans-serif;
   width: 50%;
   min-width: 300px;
   background-color: var(--color-bright-bg);
