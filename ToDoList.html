@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/b8ead2406e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="ToDoList.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;0,500;1,100;1,200;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200&display=swap"
+      rel="stylesheet"
+    />
+    <title>ToDoList</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="addItem">
+        <h3 class="addItem-title">ToDoList</h3>
+        <div class="addItem-bar">
+          <input
+            type="text"
+            class="addItem-bar__input"
+            placeholder="해야할 일을 입력해주세요."
+          />
+          <button class="addItem-bar__btn">Add</button>
+        </div>
+      </form>
+      <section class="todo">
+        <h3 class="todo-title">ToDo</h3>
+        <ul class="todo-itemsList"></ul>
+      </section>
+      <section class="completed">
+        <h3 class="completed-title">Completed</h3>
+        <ul class="completed-itemsList"></ul>
+      </section>
+    </div>
+    <script src="ToDoList.mjs" type="module"></script>
+  </body>
+</html>
