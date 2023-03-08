@@ -168,18 +168,21 @@ const clickEvent = (elem, eventHandler) => {
   });
 };
 
-clickEvent(initVar.addBtn, addCnts);
-clickEvent(initVar.todoItemsList, deleteCnts);
-clickEvent(initVar.completedItemsList, deleteCnts);
-clickEvent(initVar.todoItemsList, todoCompletedCnts);
-clickEvent(initVar.completedItemsList, todoInCompletedCnts);
-clickEvent(initVar.container, editCntsClick);
-editCntsEnter();
+function bindEventHandlers() {
+  clickEvent(initVar.addBtn, addCnts);
+  clickEvent(initVar.todoItemsList, deleteCnts);
+  clickEvent(initVar.completedItemsList, deleteCnts);
+  clickEvent(initVar.todoItemsList, todoCompletedCnts);
+  clickEvent(initVar.completedItemsList, todoInCompletedCnts);
+  clickEvent(initVar.container, editCntsClick);
+  editCntsEnter();
+}
 
 /**
  * 최초 웹페이지 로드될 떄와 새로고침이 발생할 때, localStorage에 저장되어 있는 파일을 불러와 그 당시 배열에 저장되어 있는 li요소들을 렌더링한다.
  */
 const init = () => {
+  bindEventHandlers();
   todos = getLocalStorage("todos");
   done = getLocalStorage("done");
   if (todos.length === 0 && done.length === 0) {

@@ -25,20 +25,20 @@ export class Contents {
     li.dataset.id = this.id;
     li.dataset.isCompleted = this.isCompleted;
     li.innerHTML = `
-    <label class="txt">${this.content}</label>
-    <input class="listItemInput" type="text" placeholder="해야할 일을 입력한 후 Enter 키를 눌러 수정해주세요."/>
-    <div class="item-icons">
-      <a href="#" class="complete-item mx-2 item-icon">
-        <i class="far fa-check-circle"></i>
-      </a>
-      <a href="#" class="edit-item mx-2 item-icon">
-        <i class="far fa-edit"></i>
-      </a>
-      <a href="#" class="delete-item item-icon">
-        <i class="far fa-times-circle"></i>
-      </a>
-    </div>
-  `;
+      <label class="txt">${this.content}</label>
+      <input class="listItemInput" type="text" placeholder="해야할 일을 입력한 후 Enter 키를 눌러 수정해주세요."/>
+      <div class="item-icons">
+        <button class="complete-item mx-2 item-icon">
+          <i class="far fa-check-circle"></i>
+        </button>
+        <button class="edit-item mx-2 item-icon">
+          <i class="far fa-edit"></i>
+        </button>
+        <button class="delete-item item-icon">
+          <i class="far fa-times-circle"></i>
+        </button>
+      </div>
+    `;
     return li;
   }
 }
