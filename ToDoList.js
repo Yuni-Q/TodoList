@@ -8,10 +8,18 @@ let done = [];
  * @param {Array} arr
  * @param {Object} li
  */
-const liPushArr = (arr, li) => {
+const liPushDone = (arr, li) => {
   arr.push({
     id: li.dataset.id,
     isCompleted: true,
+    content: li.children[0].textContent
+  });
+};
+
+const liPushTodo = (arr, li) => {
+  arr.push({
+    id: li.dataset.id,
+    isCompleted: false,
     content: li.children[0].textContent
   });
 };
@@ -24,7 +32,7 @@ const todoCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const todoId = Number(li.dataset.id);
-    liPushArr(done, li);
+    liPushDone(done, li);
     setLocalStorage("done", done);
     li.remove();
     initVar.completedItemsList.appendChild(li);
@@ -41,7 +49,7 @@ const todoInCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const complId = Number(li.dataset.id);
-    liPushArr(todos, li);
+    liPushTodo(todos, li);
     setLocalStorage("todos", todos);
     li.remove();
     initVar.todoItemsList.appendChild(li);
