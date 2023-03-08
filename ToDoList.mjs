@@ -25,10 +25,18 @@ const getLocalStorage = (key) => {
  * @param {Array} arr
  * @param {Object} li
  */
-const liPushArr = (arr, li) => {
+const liPushDone = (arr, li) => {
   arr.push({
     id: li.dataset.id,
     isCompleted: true,
+    content: li.children[0].textContent
+  });
+};
+
+const liPushTodo = (arr, li) => {
+  arr.push({
+    id: li.dataset.id,
+    isCompleted: false,
     content: li.children[0].textContent
   });
 };
@@ -79,7 +87,7 @@ const todoCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const todoId = Number(li.dataset.id);
-    liPushArr(done, li);
+    liPushDone(done, li);
     setLocalStorage("done", done);
     li.remove();
     initVar.completedItemsList.appendChild(li);
@@ -96,7 +104,7 @@ const todoInCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const complId = Number(li.dataset.id);
-    liPushArr(todos, li);
+    liPushTodo(todos, li);
     setLocalStorage("todos", todos);
     li.remove();
     initVar.todoItemsList.appendChild(li);
@@ -181,6 +189,7 @@ function bindEventHandlers() {
 /**
  * 최초 웹페이지 로드될 떄와 새로고침이 발생할 때, localStorage에 저장되어 있는 파일을 불러와 그 당시 배열에 저장되어 있는 li요소들을 렌더링한다.
  */
+
 const init = () => {
   bindEventHandlers();
   todos = getLocalStorage("todos");
@@ -199,26 +208,21 @@ const init = () => {
       `li[data-id="${itemId}"]`
     );
     if (existingTodoListItem) return;
-    const todoItem = todos.find((todo) => todo.id === itemId);
-    if (todoItem) {
+    const item =
+      todos.find((todo) => todo.id === itemId) ||
+      done.find((compl) => compl.id === itemId);
+    if (item) {
       const contents = new initVar.Contents(
-        todoItem.id,
-        todoItem.isCompleted,
-        todoItem.content
+        item.id,
+        item.isCompleted,
+        item.content
       );
       const listItem = contents.createTodoItem();
-      initVar.todoItemsList.appendChild(listItem);
-      return;
-    }
-    const doneItem = done.find((compl) => compl.id === itemId);
-    if (doneItem) {
-      const contents = new initVar.Contents(
-        doneItem.id,
-        doneItem.isCompleted,
-        doneItem.content
-      );
-      const listItem = contents.createTodoItem();
-      initVar.completedItemsList.appendChild(listItem);
+      if (item.isCompleted) {
+        initVar.completedItemsList.appendChild(listItem);
+      } else {
+        initVar.todoItemsList.appendChild(listItem);
+      }
     }
   });
 };
