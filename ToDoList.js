@@ -1,6 +1,5 @@
 const clickEvent = (elem, eventHandler) => {
   elem.addEventListener("click", function (e) {
-    e.preventDefault();
     const target = e.target;
     if (target) {
       eventHandler(target);
@@ -12,6 +11,7 @@ const clickEvent = (elem, eventHandler) => {
  * @description li요소들을 삭제버튼을 통해 삭제한다. 이때, todos와 done 배열에서도 해당 li요소의 id와 같은 객체를 pop해준다.
  * @param {Object} target
  */
+
 const deleteCnts = (target) => {
   if (target.className === "far fa-times-circle") {
     const li = target.closest("li");
