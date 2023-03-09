@@ -1,7 +1,6 @@
 import TodoInput from './TodoInput.js';
 import TodoList from './TodoList.js';
 import { getItem, setItem } from './localStorage.js';
-import { ValidationError, NewKeyWordRequiredError } from './Validation.js';
 
 const APP_STORAGE_KEY = 'todo-list-data';
 const DEFALUT_VALUE = [
@@ -65,13 +64,16 @@ export default function App({ $target }) {
       todoList.setState(this.state);
     };
   } catch (err) {
-    if (
-      err instanceof ValidationError ||
-      err instanceof NewKeyWordRequiredError
-    ) {
-      alert(err.name + ' : ' + err.message);
-    } else {
+    if (typeof err === 'string') {
       alert(err);
+    } else {
+      if (err instanceof Error) {
+        console.log('err object');
+        alert(err?.message);
+      } else {
+        const message = err.message || '알 수 없는 에러가 발생했어요.';
+        alert(err?.message);
+      }
     }
   }
 }
