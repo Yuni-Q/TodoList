@@ -67,13 +67,10 @@ export default function App({ $target }) {
     if (typeof err === 'string') {
       alert(err);
     } else {
-      if (err instanceof Error) {
-        console.log('err object');
-        alert(err?.message);
-      } else {
+      if (!err instanceof Error) {
         const message = err.message || '알 수 없는 에러가 발생했어요.';
-        alert(err?.message);
       }
+      alert(err?.message);
     }
   }
 }
