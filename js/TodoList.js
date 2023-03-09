@@ -7,6 +7,7 @@ import Validate from './Validation.js';
  */
 
 export default function TodoList({
+  $li,
   initialState,
   onTextClick,
   onRemoveClick,
@@ -14,7 +15,6 @@ export default function TodoList({
 }) {
   Validate(initialState, new.target);
   this.state = initialState;
-  this.$li = document.querySelector('#todo-list-item');
 
   const listTemplate = (id, text, isCompleted) => {
     return `<li id=${id}>
@@ -27,7 +27,7 @@ export default function TodoList({
     </li>`;
   };
 
-  this.$li.addEventListener('click', (e) => {
+  $li.addEventListener('click', (e) => {
     const $targetLi = e.target.closest('li');
     const listIndex = this.state.findIndex(
       ({ id }) => id === parseInt($targetLi.id)
@@ -41,7 +41,7 @@ export default function TodoList({
     } else if (e.target.className === 'remove-button') {
       onRemoveClick(listIndex);
     } else if (e.target.className === 'edit-button') {
-      this.$li.innerHTML = this.state
+      $li.innerHTML = this.state
         .map(({ id, text, isCompleted }) => {
           if (id === parseInt($targetLi.id)) {
             return `<li id=${id}>
@@ -65,7 +65,7 @@ export default function TodoList({
   };
 
   this.render = () => {
-    this.$li.innerHTML = this.state
+    $li.innerHTML = this.state
       .map(({ id, text, isCompleted }) => {
         return listTemplate(id, text, isCompleted);
       })

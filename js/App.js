@@ -1,7 +1,11 @@
 import TodoInput from './TodoInput.js';
 import TodoList from './TodoList.js';
 import { getItem, setItem } from './localStorage.js';
-
+import {
+  TODO_LIST_ITEM_ID,
+  TODO_FORM_ID,
+  TODO_INPUT_ID,
+} from './attribute_name.js';
 const APP_STORAGE_KEY = 'todo-list-data';
 const DEFALUT_VALUE = [
   {
@@ -17,6 +21,10 @@ const DEFALUT_VALUE = [
 ];
 
 export default function App({ $target }) {
+  const $li = document.querySelector(TODO_LIST_ITEM_ID);
+  const $todoForm = document.querySelector(TODO_FORM_ID);
+  const $todoInput = document.querySelector(TODO_INPUT_ID);
+
   this.state = getItem(APP_STORAGE_KEY, DEFALUT_VALUE, () => {
     alert('저장된 데이터에 문제가 있어 기본데이터로 실행합니다.');
     setItem(APP_STORAGE_KEY, DEFALUT_VALUE);
@@ -24,7 +32,8 @@ export default function App({ $target }) {
 
   try {
     const todoInput = new TodoInput({
-      initialState: this.state,
+      $todoForm,
+      $todoInput,
       onSubmit: (text) => {
         this.setState([
           ...this.state,
@@ -38,6 +47,7 @@ export default function App({ $target }) {
     });
 
     const todoList = new TodoList({
+      $li,
       initialState: this.state,
       $target,
       onTextClick: (index) => {

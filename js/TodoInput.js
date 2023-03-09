@@ -1,15 +1,11 @@
-export default function TodoInput({ initialState, onSubmit }) {
-  this.todoForm = document.querySelector('#todo-form');
-  this.$input = document.querySelector('#todo-input');
-  this.$button = document.querySelector('#todo-button');
-
-  this.todoForm.addEventListener('submit', (e) => {
+export default function TodoInput({ $todoForm, $todoInput, onSubmit }) {
+  $todoForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const { value: text } = this.$input;
+    const { value: text } = $todoInput;
 
     if (text.length === 0) return;
     onSubmit(text);
-    this.$input.value = '';
-    this.$input.focus();
+    $todoInput.value = '';
+    $todoInput.focus();
   });
 }
