@@ -216,7 +216,7 @@ const init = () => {
     const listItem = contents.createTodoItem();
     if (item && item.isCompleted === "true") {
       initVar.completedItemsList.appendChild(listItem);
-    } else {
+    } else if (item && item.isCompleted === "false") {
       initVar.todoItemsList.appendChild(listItem);
     }
   });
