@@ -33,18 +33,16 @@ const init = () => {
     const item =
       todos.find((todo) => todo.id === itemId) ||
       done.find((compl) => compl.id === itemId);
-    if (item) {
-      const contents = new initVar.Contents(
-        item.id,
-        item.isCompleted,
-        item.content
-      );
-      const listItem = contents.createTodoItem();
-      if (item.isCompleted) {
-        initVar.completedItemsList.appendChild(listItem);
-      } else {
-        initVar.todoItemsList.appendChild(listItem);
-      }
+    const contents = new initVar.Contents(
+      item.id,
+      item.isCompleted,
+      item.content
+    );
+    const listItem = contents.createTodoItem();
+    if (item && item.isCompleted === "true") {
+      initVar.completedItemsList.appendChild(listItem);
+    } else {
+      initVar.todoItemsList.appendChild(listItem);
     }
   });
 };
