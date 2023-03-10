@@ -25,18 +25,15 @@ const getLocalStorage = (key) => {
  * @param {Array} arr
  * @param {Object} li
  */
-const liPushDone = (arr, li) => {
+const liPushArr = (arr, li) => {
+  if (li.parentNode === initVar.todoItemsList) {
+    li.dataset.isCompleted = true;
+  } else {
+    li.dataset.isCompleted = false;
+  }
   arr.push({
     id: li.dataset.id,
-    isCompleted: true,
-    content: li.children[0].textContent
-  });
-};
-
-const liPushTodo = (arr, li) => {
-  arr.push({
-    id: li.dataset.id,
-    isCompleted: false,
+    isCompleted: li.dataset.isCompleted,
     content: li.children[0].textContent
   });
 };
@@ -87,7 +84,7 @@ const todoCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const todoId = Number(li.dataset.id);
-    liPushDone(done, li);
+    liPushArr(done, li);
     setLocalStorage("done", done);
     li.remove();
     initVar.completedItemsList.appendChild(li);
@@ -104,7 +101,7 @@ const todoInCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const complId = Number(li.dataset.id);
-    liPushTodo(todos, li);
+    liPushArr(todos, li);
     setLocalStorage("todos", todos);
     li.remove();
     initVar.todoItemsList.appendChild(li);
@@ -211,18 +208,16 @@ const init = () => {
     const item =
       todos.find((todo) => todo.id === itemId) ||
       done.find((compl) => compl.id === itemId);
-    if (item) {
-      const contents = new initVar.Contents(
-        item.id,
-        item.isCompleted,
-        item.content
-      );
-      const listItem = contents.createTodoItem();
-      if (item.isCompleted) {
-        initVar.completedItemsList.appendChild(listItem);
-      } else {
-        initVar.todoItemsList.appendChild(listItem);
-      }
+    const contents = new initVar.Contents(
+      item.id,
+      item.isCompleted,
+      item.content
+    );
+    const listItem = contents.createTodoItem();
+    if (item && item.isCompleted === "true") {
+      initVar.completedItemsList.appendChild(listItem);
+    } else {
+      initVar.todoItemsList.appendChild(listItem);
     }
   });
 };
