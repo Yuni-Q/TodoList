@@ -8,18 +8,15 @@ let done = [];
  * @param {Array} arr
  * @param {Object} li
  */
-const liPushDone = (arr, li) => {
+const liPushArr = (arr, li) => {
+  if (li.parentNode === initVar.todoItemsList) {
+    li.dataset.isCompleted = true;
+  } else {
+    li.dataset.isCompleted = false;
+  }
   arr.push({
     id: li.dataset.id,
-    isCompleted: true,
-    content: li.children[0].textContent
-  });
-};
-
-const liPushTodo = (arr, li) => {
-  arr.push({
-    id: li.dataset.id,
-    isCompleted: false,
+    isCompleted: li.dataset.isCompleted,
     content: li.children[0].textContent
   });
 };
@@ -32,7 +29,7 @@ const todoCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const todoId = Number(li.dataset.id);
-    liPushDone(done, li);
+    liPushArr(done, li);
     setLocalStorage("done", done);
     li.remove();
     initVar.completedItemsList.appendChild(li);
@@ -49,7 +46,7 @@ const todoInCompletedCnts = (target) => {
   if (target.className === "far fa-check-circle") {
     const li = target.closest("li");
     const complId = Number(li.dataset.id);
-    liPushTodo(todos, li);
+    liPushArr(todos, li);
     setLocalStorage("todos", todos);
     li.remove();
     initVar.todoItemsList.appendChild(li);
