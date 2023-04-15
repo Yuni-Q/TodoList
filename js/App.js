@@ -6,6 +6,7 @@ import {
   TODO_FORM_ID,
   TODO_INPUT_ID,
 } from './attribute_name.js';
+
 const APP_STORAGE_KEY = 'todo-list-data';
 const DEFALUT_VALUE = [
   {
